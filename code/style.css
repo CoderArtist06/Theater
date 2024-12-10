@@ -6,7 +6,7 @@
 }
 
 body {
-    background: #ffffff;
+    background: #000000;
     padding-top: 100vh; /* altezza del menu */
 }
 
@@ -155,16 +155,62 @@ a:hover .icons {
     }
 }
 
+/* ------------------------------ Content ------------------------------ */
+#content {
+    margin-top: 100vh;  /* Lascia spazio per il menu */
+    width: 100%;
+    height: auto;  /* Usa 'auto' per adattarsi al contenuto */
+    min-height: calc(100vh - 100px);  /* Assicurati che ci sia abbastanza spazio per il footer */
+    padding-bottom: 60px; /* Aggiungi un po' di spazio per evitare che il contenuto venga sovrapposto */
+}
+
+.par{
+    padding:5px;
+}
+
+/* Stile per l'icona dell'informazione */
+.info-icon {
+    width: 50px; /* Larghezza del cerchio */
+    height: 50px; /* Altezza del cerchio */
+    background-color: #00008B; /* Colore blu di sfondo */
+    border-radius: 50%; /* Crea il cerchio */
+    display: flex; /* Usa flexbox per allineare il contenuto */
+    justify-content: center; /* Allinea orizzontalmente il testo al centro */
+    align-items: center; /* Allinea verticalmente il testo al centro */
+    color: white; /* Colore del testo (bianco) */
+    font-size: 24px; /* Dimensione del testo */
+    font-weight: bold; /* Testo in grassetto */
+    margin-right: 20px; /* Distanza tra l'immagine e il testo */
+}
+
+section {
+    margin-top: 20vh;
+    margin-bottom: 10.5vh;
+    margin-left: 5vh;
+    margin-right: 5vh;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 2vh;
+    padding: 5vh;
+    display: flex; /* Per disporre gli elementi orizzontalmente */
+    align-items: center; /* Allinea verticalmente gli elementi al centro */
+}
+
+section .content-text {
+    flex: 1; /* Il testo occupa lo spazio rimanente */
+}
+
 /* ---------------------------- Footer ---------------------------------- */
 
 #footer {
     position: relative;
     padding: 1em;
+    width: 100%;
     background-color: #000000;
     color: white;
     font-size: 15px;
     text-align: center;
     margin-top: 20px;
+    box-sizing: border-box;
 }
 
 #footer a {

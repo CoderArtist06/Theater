@@ -1,0 +1,172 @@
+/* ----------------------------------- Default --------------------------------- */
+* {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+body {
+    background: #ffffff;
+    padding-top: 100vh; /* altezza del menu */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ------------------------------ Navigation bar -------------------------------- */
+#navbar {
+    margin-top: 0.5vh;
+    background-color: #181919;
+    overflow: hidden;
+    position: fixed;
+    z-index: 1000;
+    border-radius: 2vh;
+    padding: 1vh;
+    box-sizing: border-box;
+    /* Center the navbar */
+    top: 0;
+    width: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Stili per gli elementi della lista (menu items) */
+#navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#navbar li {
+    display: inline;
+    margin-right: 20px;
+}
+
+#navbar a {
+    font-size: larger;
+    color: white;
+    padding: 14px 20px;
+    display: inline-block;
+    border-radius: 30px;  /* Angoli arrotondati per un effetto più morbido */
+    transition: all 0.3s ease;  /* Transizione fluida per tutti gli effetti */
+}
+
+/* Effetto al passaggio del mouse */
+#navbar a:hover {
+    background-color: #ddd;
+    color: black;
+    border-radius: 30px;  /* Mantieni gli angoli arrotondati durante l'hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* Aggiungi un'ombra per un effetto "sdontato" */
+    transform: scale(1.05);  /* Ingigantisce leggermente il link per un effetto di "zoom" */
+}
+
+.icons {
+    width: 2.5vh;
+    height: 2.5vh;
+    padding-right: 1vh;
+    filter: invert(0%);
+}
+
+a:hover .icons {
+    color: black;
+    filter: invert(100%);
+}
+
+/* --------------------------------------- Conteiner ------------------------------------------------ */
+.conteiner-img {
+    position: relative;  /* Necessario per posizionare l'overlay sopra l'immagine */
+    width: 100%;
+    height: 100%;  /* Imposta un'altezza fissa o adattabile a seconda dell'immagine */
+    overflow: hidden;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Assicura che l'immagine copra completamente il contenitore */
+    will-change: transform;  /* Ottimizza il rendering del movimento */
+}    
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);  /* Colore nero semi-trasparente (modifica l'alpha per scurire più o meno) */
+    object-fit: cover;  /* Assicura che l'immagine copra completamente il contenitore */
+    will-change: transform;  /* Ottimizza il rendering del movimento */
+}
+
+/* Logo - Testo con animazione */
+.logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    opacity: 0; /* Comincia invisibile */
+    transform: translate(-50%, -50%) scale(0.8); /* Comincia con un ingrandimento ridotto */
+    transition: opacity 3s ease, transform 3s ease; /* Animazioni fluide */
+    animation: fadeInScale 2s ease-out forwards;  /* Animazione al caricamento */
+}
+
+/* Aggiungi effetto di comparsa e ingrandimento */
+#conteiner-img:hover .logo {
+    opacity: 1;  /* Rende il testo visibile */
+    transform: translate(-50%, -50%) scale(1.2); /* Ingrandisce il testo */
+}
+
+/* Stili per i testi */
+.logo h1, .logo p {
+    margin: 10px 0;
+    font-size: 10vh;
+}
+
+/* Animazione per il logo */
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+/* Animazione per ingrandire h1 */
+@keyframes h1Grow {
+    0% {
+        font-size: 1.5em;  /* Inizia con una dimensione più piccola */
+    }
+    100% {
+        font-size: 3.5em;  /* Ingrandisce il testo */
+    }
+}
+
+/* ---------------------------- Footer ---------------------------------- */
+
+#footer {
+    position: relative;
+    padding: 1em;
+    background-color: #000000;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#footer a {
+    color: white;
+}

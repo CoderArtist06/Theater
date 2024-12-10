@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>theater</title>
+
+    <link href="style.css" type="text/css" rel="stylesheet">
+    
+    <!-- 
+        Font
+        https://fonts.google.com/
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shows.html"><img src="img/shows.png" alt="shows" class="icons">Shows</a></li>
+            <li><a href="basket.html"><img src="img/shoppingCart.png" alt="shoppingCart" class="icons">Basket</a></li>
+        </ul>
+    </nav> 
+    <!-- Content -->
+    <div id="content">
+        <!-- Form per selezionare la città e il teatro -->
+        <form action="">
+            <!-- Selezione della città -->
+            <select id="citta" name="citta" onchange="mostraTeatri()">
+                <option value="" disabled selected>Select a city</option>
+                <option value="ferrara">Ferrara</option>
+                <option value="bologna">Bologna</option>
+            </select>
+            <select id="teatro" name="teatro">
+                <!-- Le opzioni verranno popolate dinamicamente -->
+                <option value="" disabled selected>Select a theater</option>
+            </select>
+            <input type="submit" value="submit">
+        </form>
+        <!-- Javascript -->
+        <script src="select.js"></script>
+    </div>
+    <div id="footer">
+        <p>
+            © 2024 Theater. All rights reserved. <br>
+            <a href="about.html">About Us</a>
+        </p>
+    </div>
+</body>
+</html>

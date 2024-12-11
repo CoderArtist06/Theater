@@ -216,3 +216,48 @@ section .content-text {
 #footer a {
     color: white;
 }
+
+/* ---------------------------- Shows ------------------------------------ */
+
+/* Aggiungiamo uno stile per gli spettacoli */
+.show-card {
+    display: flex; /* Dispone l'immagine e il testo su una riga */
+    align-items: center; /* Allinea verticalmente gli elementi */
+    margin-bottom: 20px; /* Spazio tra gli spettacoli */
+    border: 1px solid #ccc; /* Aggiungi un bordo per separare ogni spettacolo */
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+/* Stile per l'immagine del poster */
+.show-poster {
+    border-radius: 15%; /* Arrotonda l'immagine */
+    width: 200px; /* Imposta una larghezza fissa per l'immagine */
+    height: 400px; /* Imposta un'altezza fissa per l'immagine */
+    margin-right: 20px; /* Distanza tra l'immagine e il testo */
+}
+
+/* Contenitore per il titolo e la descrizione */
+.show-info {
+    flex: 1; /* Occupa tutto lo spazio rimanente */
+}
+
+/* Stile per il titolo dello spettacolo */
+.show-title {
+    font-size: 20px; /* Imposta una dimensione più grande per il titolo */
+    font-weight: bold;
+    margin-bottom: 10px; /* Distanza tra il titolo e la descrizione */
+}
+
+/* Stile per la descrizione dello spettacolo */
+.show-description {
+    font-size: 14px; /* Imposta una dimensione del testo più piccola */
+    color: #555; /* Colore del testo */
+    line-height: 1.5;
+}
+
+/* Optional: Aggiungi una piccola ombra al testo per farlo risaltare */
+.show-info {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}

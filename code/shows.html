@@ -1,3 +1,35 @@
+<?php
+// Array completo degli spettacoli, con titoli, descrizioni e immagini
+$all_shows = [
+    [
+        'title' => 'Cats',
+        'description' => 'A wonderful show in Ferrara that brings art and culture together.',
+        'poster' => 'img/cats.png' // Percorso immagine
+    ],
+    [
+        'title' => 'Hamilton',
+        'description' => 'An exciting musical performance with great visuals.',
+        'poster' => 'img/hamilton.png'
+    ],
+    [
+        'title' => "Fantasma dell'Opera",
+        'description' => 'An exciting musical performance with great visuals.',
+        'poster' => 'img/fantasmaOpera.png'
+    ],
+    [
+        'title' => 'Miserables',
+        'description' => 'A thrilling drama performance in the heart of Bologna.',
+        'poster' => 'img/miserables.png'
+    ],
+    [
+        'title' => 'Oz',
+        'description' => 'A thrilling drama performance in the heart of Bologna.',
+        'poster' => 'img/oz.png'
+    ]
+];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,21 +58,81 @@
         </ul>
     </nav> 
     <!-- Content -->
+    <div id="container-img">
+        <img src="img/schiaccianoci.png" alt="schiaccianoci" class="background-image">
+        <div class="overlay"></div>
+        <div class="logo">
+            <h1>Shows</h1>
+        </div>
+    </div>
     <div id="content">
-        <!-- Form per selezionare la città e il teatro -->
-        <form action="">
-            <!-- Selezione della città -->
-            <select id="citta" name="citta" onchange="mostraTeatri()">
-                <option value="" disabled selected>Select a city</option>
-                <option value="ferrara">Ferrara</option>
-                <option value="bologna">Bologna</option>
-            </select>
-            <select id="teatro" name="teatro">
-                <!-- Le opzioni verranno popolate dinamicamente -->
-                <option value="" disabled selected>Select a theater</option>
-            </select>
-            <input type="submit" value="submit">
-        </form>
+        <section>
+            <div class="content-text">
+                <h1>Benvenuti</h1>
+                <?php
+                    // Se il form è stato inviato, non mostrare il messaggio introduttivo
+                    if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+                        echo '<h3>Prima di mostrarvi i nostri bellisimi shows della serata, per favore schegliete il teatro che vi piacerebbe vederlo</h3>';
+                    }
+                ?>
+                <!-- Form per selezionare la città e il teatro -->
+                <form id="show-form" method="GET">
+                    <!-- Selezione della città -->
+                    <select id="citta" name="citta" onchange="mostraTeatri()">
+                        <option value="" disabled selected>Select a city</option>
+                        <option value="ferrara">Ferrara</option>
+                        <option value="bologna">Bologna</option>
+                    </select>
+                    <select id="teatro" name="teatro">
+                        <!-- Le opzioni verranno popolate dinamicamente -->
+                        <option value="" disabled selected>Select a theater</option>
+                    </select>
+                    <input type="submit" value="submit">
+                </form>
+
+                <!-- Modificare i file da html in php -->
+                <?php
+                    if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['citta'], $_GET['teatro'])) {
+                        // Recupera città e teatro dalla richiesta GET
+                        $citta = $_GET['citta'];
+                        $teatro = $_GET['teatro'];
+
+                        // Filtro gli spettacoli in base alla città
+                        $filtered_shows = [];
+                        if ($citta == "ferrara") {
+                            $filtered_shows = array_filter($all_shows, function($show) {
+                                return in_array($show['title'], ['Cats', 'Hamilton', 'Miserables']);
+                            });
+                        } elseif ($citta == "bologna") {
+                            $filtered_shows = array_filter($all_shows, function($show) {
+                                return in_array($show['title'], ['Fantasma dell\'Opera', 'Oz']);
+                            });
+                        }
+
+                        // Se ci sono spettacoli da mostrare
+                        if (!empty($filtered_shows)) {
+                            echo "<div id='shows'>
+                                     <h2>Shows disponibili:</h2>
+                                     <ul id='shows-list'>";
+                            foreach ($filtered_shows as $show) {
+                                echo "<li class='show-item'>
+                                          <div class='show-card'>
+                                              <img class='show-poster' src='" . htmlspecialchars($show['poster']) . "' alt='" . htmlspecialchars($show['title']) . "'>
+                                              <div class='show-info'>
+                                                  <h3 class='show-title'>" . htmlspecialchars($show['title']) . "</h3>
+                                                  <p class='show-description'>" . htmlspecialchars($show['description']) . "</p>
+                                              </div>
+                                          </div>
+                                      </li>";
+                            }
+                            echo "</ul></div>";
+                        } else {
+                            echo "<p>No shows available for this selection.</p>";
+                        }
+                    }
+                ?>
+            </div>
+        </section>
         <!-- Javascript -->
         <script src="select.js"></script>
     </div>

@@ -26,7 +26,7 @@ Questo progetto è stato sviluppato come parte di un compito che inizialmente do
 
 Per visualizzare il sito, basta premere questo link:
 
-[Link alla repository]([https://github.com/username/repository](https://iisvalentin.altervista.org/testProva/theater/index.html))  
+[Link al Sito]([https://github.com/username/repository](https://iisvalentin.altervista.org/testProva/theater/index.html))  
 
 ## Conclusioni
 

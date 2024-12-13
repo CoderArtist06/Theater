@@ -5,7 +5,7 @@ Questo progetto è stato sviluppato come parte di un compito che inizialmente do
 ## Problemi incontrati
 
 1. **Sviluppo individuale**  
-   Originariamente, il compito doveva essere realizzato in coppia, ma per motivi personali non sono riuscito a collaborare con il mio compagno. Ciò ha comportato una maggiore quantità di lavoro e una gestione del tempo meno efficiente.
+   Originariamente, il compito doveva essere realizzato in coppia, ma il mio compagno ha deciso di non partecipare più al progetto. Questo ha comportato una maggiore quantità di lavoro per me e una gestione del tempo meno efficiente.
 
 2. **Problemi con il server**  
    Il server che ospita questo sito ha presentato numerosi problemi tecnici che hanno ostacolato il mio lavoro. Ho dovuto riadattare e modificare il mio approccio alla programmazione per superare queste difficoltà. Questo ha causato dei ritardi e un certo stress nel completamento del progetto.

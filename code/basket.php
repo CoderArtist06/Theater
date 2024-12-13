@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <title>theater</title>
 
     <style>
-    	/* ----------------------------------- Default --------------------------------- */
+        /* ----------------------------------- Default --------------------------------- */
         * {
             font-family: "EB Garamond", serif;
             font-optical-sizing: auto;
@@ -145,6 +145,13 @@
             color: white;
         }
         /* Form */
+        
+        /* Abbassare il pulsante Acquista */
+        
+       
+        #price-display {
+            margin-top: 25vh; /* Aggiungi spazio sotto il prezzo, sopra il pulsante */
+        }
 
         #show-form {
             display: flex;
@@ -156,13 +163,6 @@
             height: 4vh;
             font-size: 16px;
             padding: 0.5vh;
-        }
-
-        .map-container {
-            margin-top: 20px;
-            height: 300px;
-            width: 100%;
-            background-color: #ddd;
         }
 
         .seat-grid {
@@ -201,6 +201,26 @@
             font-size: 20px;
             font-weight: bold;
         }
+        
+        /* Organizza la mappa e i posti affiancati */
+        .map-seat-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .map-container {
+            flex: 1;
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        #seat-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 5px;
+        }
     </style>
     
     <!-- 
@@ -226,65 +246,62 @@
         <section>
             <div class="content-text">
                 <h1>Benvenuti alla zona di Acquisto</h1>
-                <form id="show-form" method="GET">
-                    <!-- Selezione della città -->
+                <!-- Form -->
+                <form id="show-form" method="POST">
                     <select id="citta" name="citta" onchange="mostraTeatri()" required>
                         <option value="" disabled selected>Seleziona la città</option>
                         <option value="ferrara">Ferrara</option>
                         <option value="bologna">Bologna</option>
                     </select>
 
-                    <!-- Selezione del teatro -->
                     <select id="teatro" name="teatro" required>
                         <option value="" disabled selected>Seleziona un teatro</option>
                     </select>
 
-                    <!-- Selezione dello spettacolo -->
                     <select id="spettacolo" name="spettacolo" required>
                         <option value="" disabled selected>Seleziona uno spettacolo</option>
                     </select>
 
-                    <!-- Mappa geografica -->
-                    <div class="map-container" id="map-container">
-                        <!-- Mappa del teatro si caricherà qui -->
+                    <input type="email" name="email" placeholder="Inserisci la tua email" required>
+
+                    <div class="map-seat-container">
+                        <div class="map-container" id="map-container">
+                            <!-- La mappa sarà caricata qui -->
+                        </div>
+                        <div id="seat-grid" class="seat-grid">
+                            <!-- I posti verranno popolati dinamicamente -->
+                        </div>
                     </div>
 
-                    <!-- Griglia di posti -->
-                    <div id="seat-grid" class="seat-grid">
-                        <!-- I posti verranno popolati dinamicamente -->
-                    </div>
+                    <div id="price-display">Prezzo: €0</div>
 
-                    <!-- Prezzo -->
-                    <div class="price-display" id="price-display">Prezzo: €0</div>
-
-                    <button type="submit">Acquista biglietto</button>
+                    <button type="submit" id="submit-btn">Acquista biglietto</button>
                 </form>
 
                 <script>
-                    // Dati per le città, teatri e spettacoli (simulazione)
                     const data = {
                         ferrara: {
                             teatri: {
-                                "Teatro Comunale": {
-                                    spettacoli: ["La Traviata", "Carmen", "Rigoletto"],
-                                    mappa: "Mappa Teatro Comunale Ferrara",
+                                "Teatro Comunale Ferrara": {
+                                    spettacoli: ["Cats", "Hamilton", "Miserables"],
+                                    mappa: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2829.225105935598!2d11.618151576068966!3d44.837348871070645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477e4e6b5316860b%3A0x1a1c82d1c2c3a643!2sTeatro%20Comunale%20di%20Ferrara!5e0!3m2!1sit!2sit!4v1734108640724!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
                                     prezzi: {
-                                        "La Traviata": [50, 40, 30, 20, 10], // Prezzi per ciascuna fila
-                                        "Carmen": [60, 50, 40, 30, 20],
-                                        "Rigoletto": [55, 45, 35, 25, 15]
+                                        "Cats": [50, 40, 30, 20, 10],
+                                        "Hamilton": [60, 50, 40, 30, 20],
+                                        "Miserables": [55, 45, 35, 25, 15]
                                     }
                                 }
                             }
                         },
                         bologna: {
                             teatri: {
-                                "Teatro Duse": {
-                                    spettacoli: ["Otello", "Don Giovanni", "Madama Butterfly"],
-                                    mappa: "Mappa Teatro Duse Bologna",
+                                "Teatro Comunale Bologna": {
+                                    spettacoli: ["Cats", "Fantasma dell'Opera", "Oz"],
+                                    mappa: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2845.902344122817!2d11.3479916760496!3d44.496667771074634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477fd4bb8c6d1093%3A0x6d406ef45cc0f049!2sTeatro%20Comunale%20di%20Bologna!5e0!3m2!1sit!2sit!4v1734108679480!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
                                     prezzi: {
-                                        "Otello": [70, 60, 50, 40, 30],
-                                        "Don Giovanni": [65, 55, 45, 35, 25],
-                                        "Madama Butterfly": [60, 50, 40, 30, 20]
+                                        "Cats": [50, 40, 30, 20, 10],
+                                        "Fantasma dell'Opera": [60, 50, 40, 30, 20],
+                                        "Oz": [55, 45, 35, 25, 15]
                                     }
                                 }
                             }
@@ -292,24 +309,19 @@
                     };
 
                     function mostraTeatri() {
-                        const city = document.getElementById('citta').value;
-                        const teatroSelect = document.getElementById('teatro');
-                        const spettacoloSelect = document.getElementById('spettacolo');
-                        const mapContainer = document.getElementById('map-container');
-                        const seatGrid = document.getElementById('seat-grid');
-                        const priceDisplay = document.getElementById('price-display');
+                        const citta = document.getElementById("citta").value;
+                        const teatroSelect = document.getElementById("teatro");
+                        const spettacoloSelect = document.getElementById("spettacolo");
 
-                        // Pulisci le opzioni precedenti
-                        teatroSelect.innerHTML = "<option value='' disabled selected>Seleziona un teatro</option>";
-                        spettacoloSelect.innerHTML = "<option value='' disabled selected>Seleziona uno spettacolo</option>";
-                        seatGrid.innerHTML = ""; // Pulisci la griglia dei posti
-                        priceDisplay.textContent = "Prezzo: €0";
-                        mapContainer.textContent = ""; // Pulisci la mappa
+                        teatroSelect.innerHTML = '<option value="" disabled selected>Seleziona un teatro</option>';
+                        spettacoloSelect.innerHTML = '<option value="" disabled selected>Seleziona uno spettacolo</option>';
 
-                        if (!city) return;
+                        if (!citta) return;
 
-                        const teatri = data[city]?.teatri || {};
-                        for (const teatro in teatri) {
+                        const teatri = data[citta]?.teatri;
+                        if (!teatri) return;
+
+                        for (const [teatro, info] of Object.entries(teatri)) {
                             const option = document.createElement("option");
                             option.value = teatro;
                             option.textContent = teatro;
@@ -317,99 +329,104 @@
                         }
                     }
 
-                    document.getElementById('teatro').addEventListener('change', function() {
-                        const city = document.getElementById('citta').value;
+                    document.getElementById("teatro").addEventListener("change", function () {
+                        const citta = document.getElementById("citta").value;
                         const teatro = this.value;
-                        const spettacoloSelect = document.getElementById('spettacolo');
-                        const mapContainer = document.getElementById('map-container');
-                        const seatGrid = document.getElementById('seat-grid');
-                        const priceDisplay = document.getElementById('price-display');
+                        const spettacoloSelect = document.getElementById("spettacolo");
 
-                        if (!city || !teatro) return;
+                        if (!citta || !teatro) return;
 
-                        const teatroData = data[city]?.teatri[teatro];
-                        if (teatroData) {
-                            // Mostra la mappa del teatro
-                            mapContainer.textContent = teatroData.mappa;
-
-                            // Aggiungi gli spettacoli
-                            spettacoloSelect.innerHTML = "<option value='' disabled selected>Seleziona uno spettacolo</option>";
-                            teatroData.spettacoli.forEach(spettacolo => {
-                                const option = document.createElement("option");
-                                option.value = spettacolo;
-                                option.textContent = spettacolo;
-                                spettacoloSelect.appendChild(option);
-                            });
-
-                            // Aggiungi la griglia dei posti e i prezzi
-                            const prezzi = teatroData.prezzi[spettacoloSelect.value];
-                            if (prezzi) {
-                                createSeatGrid(prezzi);
-                            }
+                        const spettacoli = data[citta].teatri[teatro]?.spettacoli || [];
+                        spettacoloSelect.innerHTML = '<option value="" disabled selected>Seleziona uno spettacolo</option>';
+                        
+                        for (const spettacolo of spettacoli) {
+                            const option = document.createElement("option");
+                            option.value = spettacolo;
+                            option.textContent = spettacolo;
+                            spettacoloSelect.appendChild(option);
                         }
                     });
 
-                    document.getElementById('spettacolo').addEventListener('change', function() {
-                        const city = document.getElementById('citta').value;
-                        const teatro = document.getElementById('teatro').value;
+                    document.getElementById("spettacolo").addEventListener("change", function () {
+                        const citta = document.getElementById("citta").value;
+                        const teatro = document.getElementById("teatro").value;
                         const spettacolo = this.value;
-                        const seatGrid = document.getElementById('seat-grid');
-                        const priceDisplay = document.getElementById('price-display');
 
-                        if (!city || !teatro || !spettacolo) return;
+                        if (!citta || !teatro || !spettacolo) return;
 
-                        const teatroData = data[city]?.teatri[teatro];
-                        if (teatroData) {
-                            const prezzi = teatroData.prezzi[spettacolo];
-                            if (prezzi) {
-                                createSeatGrid(prezzi);
-                                priceDisplay.textContent = `Prezzo: €${prezzi[0]}`; // Prezzo della prima fila
-                            }
-                        }
-                    });
+                        const teatroInfo = data[citta].teatri[teatro];
+                        const mappaContainer = document.getElementById("map-container");
+                        const seatGrid = document.getElementById("seat-grid");
+                        const priceDisplay = document.getElementById("price-display");
 
-                    function createSeatGrid(prezzi) {
-                        const seatGrid = document.getElementById('seat-grid');
-                        seatGrid.innerHTML = ""; // Pulisci la griglia dei posti
+                        mappaContainer.innerHTML = teatroInfo.mappa;
 
-                        for (let row = 0; row < prezzi.length; row++) {
-                            for (let col = 0; col < 10; col++) { // 10 posti per fila
-                                const seat = document.createElement('div');
-                                seat.classList.add('seat');
-                                seat.textContent = `${row + 1}-${col + 1}`;
-                                seat.dataset.row = row;
-                                seat.dataset.col = col;
-                                seat.dataset.price = prezzi[row];
+                        const prezzi = teatroInfo.prezzi[spettacolo];
+                        seatGrid.innerHTML = '';
 
-                                seat.addEventListener('click', function() {
-                                    if (!seat.classList.contains('sold')) {
-                                        seat.classList.toggle('selected');
-                                        updatePrice();
-                                    }
-                                });
-
+                        prezzi.forEach((prezzo, index) => {
+                            for (let i = 0; i < 10; i++) { 
+                                const seat = document.createElement("div");
+                                seat.classList.add("seat");
+                                seat.textContent = `${index + 1}${String.fromCharCode(65 + i)}`;
+                                seat.onclick = () => toggleSeat(seat, prezzo);
                                 seatGrid.appendChild(seat);
                             }
-                        }
-                    }
+                        });
 
-                    function updatePrice() {
-                        const selectedSeats = document.querySelectorAll('.seat.selected');
+                        priceDisplay.textContent = `Prezzo: €${prezzi.join(", ")}`;
+                    });
+
+                    function toggleSeat(seat, prezzo) {
+                        if (seat.classList.contains("sold")) return;
+                        seat.classList.toggle("selected");
+                        const selectedSeats = document.querySelectorAll(".seat.selected");
                         let totalPrice = 0;
                         selectedSeats.forEach(seat => {
-                            totalPrice += parseFloat(seat.dataset.price);
+                            totalPrice += prezzo;
                         });
-                        document.getElementById('price-display').textContent = `Prezzo: €${totalPrice}`;
+                        document.getElementById("price-display").textContent = `Prezzo: €${totalPrice}`;
                     }
                 </script>
+
+                <?php
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $citta = $_POST['citta'];
+                        $teatro = $_POST['teatro'];
+                        $spettacolo = $_POST['spettacolo'];
+                        $email = $_POST['email'];
+
+                        $subject = "Conferma Acquisto Biglietti";
+                        $message = "
+                        Ciao,
+
+                        Grazie per aver acquistato i tuoi biglietti! Ecco i dettagli:
+
+                        Città: $citta
+                        Teatro: $teatro
+                        Spettacolo: $spettacolo
+
+                        Cordiali saluti,
+                        Il team di Biglietti per Spettacoli
+                        ";
+
+                        $headers = "From: info@teatro.com\r\n";
+                        $headers .= "Reply-To: info@teatro.com\r\n";
+                        $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+
+                        if (mail($email, $subject, $message, $headers)) {
+                            echo "Email inviata con successo!";
+                        } else {
+                            echo "Si è verificato un errore nell'invio dell'email.";
+                        }
+                    }
+                ?>
             </div>
         </section>
     </div>
-    <div id="footer">
-        <p>
-            © 2024 Theater. All rights reserved. <br>
-            <a href="about.html">About Us</a>
-        </p>
-    </div>
+    <!-- Footer -->
+    <footer id="footer">
+        <p>&copy; 2024 Biglietti per Spettacoli. Tutti i diritti riservati.</p>
+    </footer>
 </body>
 </html>
